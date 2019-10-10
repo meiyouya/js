@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML_DOM</title>
+</head>
+<body>
+<div id="div1">
+    <p id="p1">第一个段落</p>
+</div>
+</body>
+<script>
+    let para = document.createElement("p");     // 创建p元素的DOM对象
+    let text = document.createTextNode("第二个段落");     // 创建文本节点的DOM对象
+    para.appendChild(text);     // 文本添加到p元素中
+    document.getElementById("div1").replaceChild(para,document.getElementById("p1"));  // p元素添加到id=p1的元素前面，p与id=p1的元素同级
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS函数</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 自调用函数从表达式函数演化而来
+    let x = function () {
+        console.log("自动调用函数");
+    };
+    x();
+    // 以上是表达式函数及其调用，在调用时把x替换为本来的表达式
+    // 同时为了表示这个函数表达式是一个整体，使用一对小括号包起来
+    // 得到如下：
+    (function () {
+        console.log("自动调用函数");
+    })();
+
+    const func1 = (x,y) => {
+        console.log(x + y);
+    };
+    func1(3,5);
+
+    function findMax() {
+        console.log(arguments);
+        var max = arguments[0];
+        console.log(arguments[0]);
+
+        if (arguments.length < 2) {
+            return max;
+        }
+
+        for (let i = 0; i < arguments.length; i++) {
+            if (arguments[i]) {
+                max = arguments[i];
+            }
+        }
+        return max;
+    }
+
+    console.log(findMax(1,3,5))
+</script>
+</html>
