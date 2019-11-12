@@ -62,9 +62,26 @@ console.log(buf.toString('latin1'));
 console.log(buf.toString('binary'));
 console.log(buf.toString('hex'));*/
 
-buf = Buffer.alloc(26);
+/*buf = Buffer.alloc(26);
 for (var i = 0; i < 26; i++) {
     buf[i] = i + 97;
 }
 console.log(buf.toString('ascii')); // 输出 abcdefghijklmnopqrstuvwxyz
-console.log(buf.toString('ascii', 0, 5)); // 输出 abcde
+console.log(buf.toString('ascii', 0, 5)); // 输出 abcde*/
+
+/*
+// buffer 转json
+let buf = Buffer.from('lawliet', 'utf-8');
+console.log(buf.toJSON());  // 调用toJson方法即可
+console.log(JSON.stringify(buf));   // stringify方法会隐式的调用toJson方法*/
+
+/*// buffer 合并
+let buf1 = Buffer.from('百度');
+let buf2 = Buffer.from('www.baidu.com');
+let buf = Buffer.concat([buf1, buf2]);
+console.log(buf.toString());    // 输出  百度www.baidu.com*/
+
+// buffer 比较
+let buf1 = Buffer.from('adc');
+let buf2 = Buffer.from('adcd');
+console.log(buf1.compare(buf2));    // 输出 -1
