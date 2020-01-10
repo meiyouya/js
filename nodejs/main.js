@@ -82,6 +82,21 @@ let buf = Buffer.concat([buf1, buf2]);
 console.log(buf.toString());    // 输出  百度www.baidu.com*/
 
 // buffer 比较
-let buf1 = Buffer.from('adc');
+/*let buf1 = Buffer.from('adc');
 let buf2 = Buffer.from('adcd');
-console.log(buf1.compare(buf2));    // 输出 -1
+console.log(buf1.compare(buf2));    // 输出 -1*/
+
+// buffer拷贝
+/* let buf1 = Buffer.from('abcdefg');
+let buf2 = Buffer.from('1234567');
+// buf1拷贝到buf2中
+buf1.copy(buf2, 1, 0, 3)
+console.log(buf1.toString())    // 输出abcdefg
+console.log(buf2.toString())    // 输出1abc567*/
+
+// 缓冲区裁剪
+let buf1 = Buffer.from('abcdef');
+let buf2 = buf1.slice(1, 2);
+console.log(buf1.toString())    // 输出 abcdef
+console.log(buf2.toString())    // 输出 b
+console.log(buf1.length)    // 输出 b
