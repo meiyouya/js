@@ -95,8 +95,13 @@ console.log(buf1.toString())    // 输出abcdefg
 console.log(buf2.toString())    // 输出1abc567*/
 
 // 缓冲区裁剪
-let buf1 = Buffer.from('abcdef');
+/* let buf1 = Buffer.from('abcdef');
 let buf2 = buf1.slice(1, 2);
 console.log(buf1.toString())    // 输出 abcdef
 console.log(buf2.toString())    // 输出 b
-console.log(buf1.length)    // 输出 b
+console.log(buf1.length)    // 输出 b */
+
+// 从流中读取数据
+var fs = require("fs");
+var data = '';
+
