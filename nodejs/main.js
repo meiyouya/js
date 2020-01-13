@@ -102,6 +102,50 @@ console.log(buf2.toString())    // 输出 b
 console.log(buf1.length)    // 输出 b */
 
 // 从流中读取数据
-var fs = require("fs");
-var data = '';
+// var fs = require("fs");
+/* var data = '';
+var readStream = fs.createReadStream('input.txt');
+readStream.setEncoding('UTF8')
+readStream.on('data', function(chunk) {
+    data += chunk;
+});
+readStream.on('end', function() {
+    console.log(data);
+});
+readStream.on('error', function(err) {
+    console.log(err.stack);
+}); */
+// 往流中写入数据
+/* var d = '菜鸟教程官网地址：www.runoob.com'
+var writeStream = fs.createWriteStream('output.txt')
+writeStream.write(d, 'UTF8');
+writeStream.end();
+writeStream.on('finish', function() {
+    console.log('写入完成');
+});
+writeStream.on('error', function(err) {
+    console.log(err.stack);
+}); */
+// 管道流
+/* var readStream = fs.createReadStream('input.txt');
+var writeStream = fs.createWriteStream('output.txt')
+readStream.setEncoding('UTF8')
+// 将readStream读取到的数据通过管道传输到writeStream中
+readStream.pipe(writeStream) */
+// 链式流
+// var zlib = require('zlib');
+// 压缩
+// fs.createReadStream('input.txt').pipe(zlib.createGzip()).pipe(fs.createWriteStream('input.txt.gz'))
+// 解压
+// fs.createReadStream('input.txt.gz').pipe(zlib.createGunzip()).pipe(fs.createWriteStream('input-unzip.txt'))
 
+// 模块
+// 加载模块
+// var say = require('./say')
+// 调用模块内的方法
+// say.hello('Node Module');
+// 以对象的形式使用模块
+var Person = require('./say')
+person = new Person();
+person.setName('张三');
+person.sayHello();
