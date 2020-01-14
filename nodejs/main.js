@@ -151,6 +151,9 @@ person.setName('张三');
 person.sayHello(); */
 
 // 路由
-var server = require('./server');
+/* var server = require('./server');
 var route = require('./route')
-server.start(route.route)
+server.start(route.route) */
+
+// 全局对象global
+
