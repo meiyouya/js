@@ -145,7 +145,12 @@ readStream.pipe(writeStream) */
 // 调用模块内的方法
 // say.hello('Node Module');
 // 以对象的形式使用模块
-var Person = require('./say')
+/* var Person = require('./say')
 person = new Person();
 person.setName('张三');
-person.sayHello();
+person.sayHello(); */
+
+// 路由
+var server = require('./server');
+var route = require('./route')
+server.start(route.route)
