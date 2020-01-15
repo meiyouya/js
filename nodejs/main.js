@@ -156,4 +156,16 @@ var route = require('./route')
 server.start(route.route) */
 
 // 全局对象global
-
+// __filename代表正在执行的文件名
+console.log(__filename)
+// __dirname代表正在执行的文件所在目录
+console.log(__dirname)
+function printHello() {
+    console.log("Hello World");
+}
+// 在2000ms的延迟之后，将printHello函数执行一次
+// var t = setTimeout(printHello, 2000);
+// 清除定时器
+// clearTimeout(t)
+// 1000ms后执行printHello并且后续每间隔1000ms就会执行一次printHello
+setInterval(printHello, 1000);
