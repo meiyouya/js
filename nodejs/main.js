@@ -168,4 +168,27 @@ function printHello() {
 // 清除定时器
 // clearTimeout(t)
 // 1000ms后执行printHello并且后续每间隔1000ms就会执行一次printHello
-setInterval(printHello, 1000);
+// setInterval(printHello, 1000);
+// 我们常用的console也是global对象的属性
+console.log('输出参数的字符串形式，以换行符结束')
+console.info('输出结果和log类似，除了Chrome，其它浏览器会多出一个蓝色的惊叹号')
+console.error('输出错误信息，输出时会有一个红色的X')
+console.warn('输出警告信息，输出结果会多出一个黄色的惊叹号')
+console.dir('检查指定对象，并美化后输出')
+console.time('输出时间，表示计时开始')
+console.timeEnd('输出时间，表示计时结束')
+console.trace('输出堆栈信息')
+var a = 4;
+console.assert(a === 3, '如果第一个表达式为false会输出这个字符串')
+// process属性用来描述程序运行的状态
+process.on('exit', function(code) {
+    console.log('退出时执行，代码：', code);
+})
+process.on('beforeExit', function(code) {
+    console.log('没有事件循环时执行，代码：', code);
+})
+process.on('uncaughtException', function(code) {
+    console.log('遇到异常时执行，代码：', code);
+})
+
+
