@@ -191,4 +191,4 @@ process.on('uncaughtException', function(code) {
     console.log('遇到异常时执行，代码：', code);
 })
 
-
+// 工具
