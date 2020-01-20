@@ -157,12 +157,12 @@ server.start(route.route) */
 
 // 全局对象global
 // __filename代表正在执行的文件名
-console.log(__filename)
+// console.log(__filename)
 // __dirname代表正在执行的文件所在目录
-console.log(__dirname)
-function printHello() {
-    console.log("Hello World");
-}
+// console.log(__dirname)
+// function printHello() {
+//     console.log("Hello World");
+// }
 // 在2000ms的延迟之后，将printHello函数执行一次
 // var t = setTimeout(printHello, 2000);
 // 清除定时器
@@ -170,7 +170,7 @@ function printHello() {
 // 1000ms后执行printHello并且后续每间隔1000ms就会执行一次printHello
 // setInterval(printHello, 1000);
 // 我们常用的console也是global对象的属性
-console.log('输出参数的字符串形式，以换行符结束')
+/*console.log('输出参数的字符串形式，以换行符结束')
 console.info('输出结果和log类似，除了Chrome，其它浏览器会多出一个蓝色的惊叹号')
 console.error('输出错误信息，输出时会有一个红色的X')
 console.warn('输出警告信息，输出结果会多出一个黄色的惊叹号')
@@ -189,6 +189,65 @@ process.on('beforeExit', function(code) {
 })
 process.on('uncaughtException', function(code) {
     console.log('遇到异常时执行，代码：', code);
-})
+})*/
 
 // 工具
+/*const util = require('util');
+async function fn() {
+    return 'hello';
+}
+const fnCallback = util.callbackify(fn);
+fnCallback((err, ret) => {
+    if (err) throw err;
+    console.log(ret);
+})*/
+
+// 文件系统
+var fs = require('fs');
+// 异步获取
+/*fs.readFile('input.txt', function (err, data) {
+    if (err) {
+        return console.log(err);
+    }
+    console.log('异步获取：' + data.toString());
+})
+// 同步获取
+var data = fs.readFileSync('input.txt');
+console.log("同步获取：" + data.toString());
+console.log("程序执行完毕");*/
+
+/*fs.open('input.txt', 'r+', function (err, fd) {
+    if (err) {
+        return console.error('文件打开错误');
+    }
+    console.log('文件打开成功');
+})*/
+
+/*fs.stat('input.txt', function (err, stats) {
+    if (err) {
+        return console.error(err);
+    }
+    console.log(stats)
+})*/
+
+/*fs.writeFile('input.txt', '使用fs.writeFile（）写入数据到文件', function (err) {
+    if (err) {
+        return console.error(err);
+    }
+    console.log('数据写入成功');
+})*/
+
+/*
+var buf = new Buffer.alloc(1024);
+fs.open('input.txt', 'r+', function (err, fd) {
+    if (err) {
+        return console.error('文件打开失败');
+    }
+    console.log('文件打开成功');
+    fs.read(fd, buf, 0, buf.length, 0, function (err, bytesRead, buffer) {
+        if (err) {
+            console.error('文件读取失败：', err);
+        }
+        console.log('文件读取成功，共读取了', bytesRead, '字节，读取的内容为：', buf.slice(0, bytesRead).toString());
+    })
+});*/

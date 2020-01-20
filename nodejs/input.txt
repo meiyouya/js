@@ -1,1 +1,1 @@
-菜鸟教程官网地址：www.runoob.com
+使用fs.writeFile（）写入数据到文件
