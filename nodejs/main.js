@@ -203,7 +203,7 @@ fnCallback((err, ret) => {
 })*/
 
 // 文件系统
-var fs = require('fs');
+// var fs = require('fs');
 // 异步获取
 /*fs.readFile('input.txt', function (err, data) {
     if (err) {
@@ -251,3 +251,52 @@ fs.open('input.txt', 'r+', function (err, fd) {
         console.log('文件读取成功，共读取了', bytesRead, '字节，读取的内容为：', buf.slice(0, bytesRead).toString());
     })
 });*/
+
+// 发送请求
+var http = require('http');
+var url = require('url');
+var util = require('util');
+var querystring = require('querystring');
+
+var postHTML =
+    '<html><head><meta charset="utf-8"><title>菜鸟教程 Node.js 实例</title></head>' +
+    '<body>' +
+    '<form method="post">' +
+    '网站名： <input name="name"><br>' +
+    '网站 URL： <input name="url"><br>' +
+    '<input type="submit">' +
+    '</form>' +
+    '</body></html>';
+
+http.createServer(function (req, resp) {
+    // 假设访问地址为    http://localhost:3000/user?name=菜鸟教程&url=www.runoob.com
+    // 获取请求地址中的参数
+    /*resp.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
+    let params = url.parse(req.url, true).query;
+    resp.write("网站名：" + params.name);
+    resp.write("\n");
+    resp.write("网站地址：" + params.url);
+    resp.end();*/
+
+    // 解析post方式发送在请求体中的数据
+    var body = '';
+    // 将请求体中的数据全部拼接到
+    req.on('data', function (chunk) {
+        body += chunk;
+    });
+    // 请求结束后，开始解析数据
+    req.on('end', function () {
+        body = querystring.parse(body);
+
+        // 响应
+        resp.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+        if(body.name && body.url) { // 输出提交的数据
+            resp.write("网站名：" + body.name);
+            resp.write("<br>");
+            resp.write("网站 URL：" + body.url);
+        } else {  // 输出表单
+            resp.write(postHTML);
+        }
+        resp.end();
+    });
+}).listen(3000);
