@@ -253,7 +253,7 @@ fs.open('input.txt', 'r+', function (err, fd) {
 });*/
 
 // 发送请求
-var http = require('http');
+/*var http = require('http');
 var url = require('url');
 var util = require('util');
 var querystring = require('querystring');
@@ -271,12 +271,12 @@ var postHTML =
 http.createServer(function (req, resp) {
     // 假设访问地址为    http://localhost:3000/user?name=菜鸟教程&url=www.runoob.com
     // 获取请求地址中的参数
-    /*resp.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
+    /!*resp.writeHead(200, {'Content-Type': 'text/plain; charset=utf-8'});
     let params = url.parse(req.url, true).query;
     resp.write("网站名：" + params.name);
     resp.write("\n");
     resp.write("网站地址：" + params.url);
-    resp.end();*/
+    resp.end();*!/
 
     // 解析post方式发送在请求体中的数据
     var body = '';
@@ -299,4 +299,4 @@ http.createServer(function (req, resp) {
         }
         resp.end();
     });
-}).listen(3000);
+}).listen(3000);*/
