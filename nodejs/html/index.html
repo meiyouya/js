@@ -5,7 +5,19 @@
     <title>首页</title>
 </head>
 <body>
-    <h1>标题</h1>
-    <p>段落</p>
+<form action="http://127.0.0.1:8081/loginGet" method="get">
+    username：<input type="text" name="username"> <br />
+    password：<input type="password" name="pwd"> <br />
+    <input type="submit" value="GET">
+</form>
+<form action="http://127.0.0.1:8081/loginPost" method="post">
+    username：<input type="text" name="username"> <br />
+    password：<input type="password" name="pwd"> <br />
+    <input type="submit" value="POST">
+</form>
+<form action="http://127.0.0.1:8081/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" size="50"> <br />
+    <input type="submit" value="确认上传">
+</form>
 </body>
 </html>
