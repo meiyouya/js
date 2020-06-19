@@ -44,5 +44,23 @@
     return a.filter(x => !set.has(x));
   };
   console.log(difference([1, 2, 3], [3, 4]));
+
+  const  distance = (x0, y0, x1, y1) => Math.hypot(x1 - x0, y1 - y0);
+  console.log(distance(1, 1, 2, 2));
+
+  const isDivisible = (dividend, divisor) => dividend % divisor === 0;
+  console.log(isDivisible(4, 2));
+
+  const factorial = n => n === 1 ? 1 : n * factorial(n - 1);
+  console.log(factorial(5));
+
+  const fibonacci = n => Array(n).fill(0).reduce((acc, val, i) => acc.concat(i > 1 ? acc[i - 1] + acc[i - 2] : i), []);
+  console.log(fibonacci(5));
+
+  const filterNonUnique = arr => arr.filter(i => arr.indexOf(i) === arr.lastIndexOf(i));
+  console.log(filterNonUnique([1, 2, 2, 4, 5, 5, 7]));
+
+  const arrayMax = arr => Math.max(...arr);
+  console.log(arrayMax([1, 5, 15, 2]));
 </script>
 </html>
