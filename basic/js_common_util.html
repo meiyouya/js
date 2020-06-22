@@ -62,5 +62,23 @@
 
   const arrayMax = arr => Math.max(...arr);
   console.log(arrayMax([1, 5, 15, 2]));
+
+  const getScrollPos = (el = window) => ({
+    x: (el.pageXOffset !== undefined) ? el.pageXOffset : el.scrollLeft,
+    y: (el.pageYOffset !== undefined) ? el.pageYOffset : el.scrollTop
+  });
+  console.log(getScrollPos());
+
+  const gcd = (x, y) => !y ? x : gcd(y, x % y);
+  console.log(gcd(8, 36));
+
+  const initialArrayRange = (end, start = 0) => Array.apply(null, Array(end - start)).map((v, i) => i + start);
+  console.log(initialArrayRange(6));
+
+  const objectFromPairs = arr => arr.reduce((a, v) => (a[v[0]] = v[1], a), {});
+  console.log(objectFromPairs([["a", 1], ["b", 2], ["c", 3]]))
+
+  const rgb2Hex = (r, g, b) => '#' + ((r << 16) + (g << 8) + b).toString(16).padStart(6, '0').toUpperCase();
+  console.log(rgb2Hex(232, 154, 178));
 </script>
 </html>
