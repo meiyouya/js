@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——Class绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--对象语法-->
+        <!--对象语法就是使用js对象去描述一个值-->
+        <div v-bind:class="{active: isActive}">显示出来</div>
+        <!--使用中划线分割的属性名，需要用引号包围以表明其是一个整体-->
+        <div v-bind:class="{active: isActive,'text-danger': hasError}">显示出来</div>
+        <!--class与v-bind:class可以同时使用，结果取并集-->
+        <div class="static" v-bind:class="{active: isActive,'text-danger': hasError}">显示出来</div>
+        <!--v-bind:class可以绑定一个对象的计算属性-->
+        <div v-bind:class="classObj">显示出来</div>
+
+        <!--数组语法-->
+        <!--数组语法就是通过传递一个数组，将数组中元素对应的值渲染到页面上-->
+        <div v-bind:class="[activeClass,errorClass]">显示出来</div>
+        <!--数组语法还可以使用三元表达式-->
+        <div v-bind:class="[isActive ? activeClass : '',errorClass]">显示出来</div>
+        <!--数组语法可以嵌套对象语法-->
+        <div v-bind:class="[{ active: isActive },errorClass]">显示出来</div>
+
+        <!--用于组件-->
+        <!--使用组件时class赋予的class的值会与组件中已赋予的取并集-->
+        <my-component class="cls3 cls4"></my-component>
+        <!--使用v-bind:class的也会与组件中已赋予的取并集-->
+        <my-component v-bind:class="{active: isActive}"></my-component>
+    </div>
+</body>
+<script>
+    /*定义一个组件，并赋予其中的HTML元素class属性*/
+    Vue.component('my-component',{
+        template: '<p class="cls1 cls2">Hi</p>'
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true,
+            hasError: false,
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        },
+        computed: {
+            classObj: function () {
+                return {
+                    active: this.isActive,
+                    'text-danger': this.hasError
+                }
+            }
+        }
+    })
+</script>
+</html>

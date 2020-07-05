@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>侦听器</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>
+            输入一个问题：
+            <input v-model="question" />
+        </p>
+        <p>{{ answer }}</p>
+    </div>
+</body>
+<script>
+    var watchApp = new Vue({
+        el: '#app',
+        data: {
+            question: '',
+            answer: '正在等待输入问题....'
+        },
+        watch: {
+            question: function (newValue, oldValue) {   // 如果question的值发生改变，此方法就会执行
+                this.answer = '正在输入....';
+                this.debouncedGetAnswer()
+            }
+        },
+        methods: {
+            getAnswer: function () {
+                if (this.question.indexOf('?') > -1 || this.question.indexOf('？')> -1) {
+                    this.answer = '正在思考答案...';
+                    var vm = this;
+                    axios.get('https://yesno.wtf/api').then(function (res) {
+                        vm.answer = _.capitalize(res.data.answer);
+                    }).catch(function (error) {
+                        vm.answer = '思考出现障碍了...' + error
+                    })
+                } else {
+                    this.answer = '问题必须以问号结束...请重新输入';
+                }
+            }
+        },
+        created: function () {
+            this.debouncedGetAnswer = _.debounce(this.getAnswer,2000);   // _.debounce()方法使用各通过Loadsh来限制频率的函数，
+            // getAnswer方法的触发会被延迟2秒，如果在2秒内再次触发，时间就从当前触发时间继续延迟2秒。以此来避免用户每按以此
+            // 键盘或者点一次鼠标或其它任何使值发生变化的操作，都会去执行操作，尤其是此操作如果开销较大，那对系统性能会有很大
+            // 影响
+        }
+    });
+</script>
+</html>

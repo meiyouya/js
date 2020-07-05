@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue学习</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <span v-if="show">{{ message }}</span>
+<!--    <p v-for="text in list">-->
+<!--        {{ text.text }}-->
+<!--    </p>-->
+    <button v-on:click="switchStatus">切换显示状态</button>
+    <input v-model="username"/>
+    <ol>
+        <study-item v-for="item in studyList" v-bind:study="item"></study-item>
+    </ol>
+    <study-item></study-item>
+</div>
+</body>
+<script>
+    // 定义并注册组件
+    Vue.component('study-item',{
+        props: ['study'],
+        // template:'<li>{{study.text}}</li>'
+        template:'<li>学习项目</li>'
+    });
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Hello Vue.js',
+            show: false,
+            studyList: [
+                {text: '学习Vue.js'},
+                {text: '学习Java'},
+                {text: '学习Python'},
+            ],
+            username: '张三'
+        },
+        methods: {
+            switchStatus: function () {
+                if (this.show) {
+                    this.show = false;
+                } else {
+                    this.show = true
+                }
+            }
+        },
+    });
+
+</script>
+</html>

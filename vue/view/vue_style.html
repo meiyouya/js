@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——Style绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--对象语法-->
+    <!--对象语法就是使用js对象去描述一个值-->
+    <div v-bind:style="{color: fontColor}">显示出来</div>
+    <!--属性值带中划线的需要用引号包围以声明是一个整体，并且如同px一样的单位等需要手动拼接-->
+    <div v-bind:style="{color: fontColor,'font-size': fontSize + 'px'}">显示出来</div>
+    <!--style也可以绑定一个对象或其计算属性-->
+    <div v-bind:style="styleObj">显示出来</div>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            fontColor: 'red',
+            fontSize: 100,
+            styleObj: {
+                color: 'red',
+                'font-size': '40px'
+            }
+        }
+    })
+</script>
+</html>

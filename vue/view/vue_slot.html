@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——插槽</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--在没有使用插槽的情况下，标签中间的  百度 两个字会被丢弃-->
+        <navigation-link url="https://www.baidu.com">百度</navigation-link>
+
+        <!--当需要在组件中多个地方使用插槽时，就需要为slot指定名字，这种插槽叫做具名插槽-->
+        <!--不指定名字的插槽都会有一个默认的叫default的名字-->
+        <!--通过v-slot指定名字，未指定的都默认加载到default slot中-->
+        <my-layout>
+            <template v-slot:header>
+                <h1>头部标题</h1>
+            </template>
+            <p>主体内容</p>
+            <p>第二段</p>
+            <template v-slot:footer>
+                尾部内容
+            </template>
+        </my-layout>
+    </div>
+</body>
+<script>
+    Vue.component('navigation-link',{
+        props:['url'],
+        template: `
+            <a v-bind:href="url">
+               <slot>默认值</slot>     <!--slot里可以设置一个默认值，当使用时没有传递过来的数据时，使用默认值--->
+            </a>
+        `
+    });
+
+    Vue.component('my-layout',{
+        template: `
+            <div>
+                <header>
+                    <slot name="header"></slot>
+                </header>
+                <main>
+                    <slot></slot>
+                </main>
+                <footer>
+                    <slot name="footer"></slot>
+                </footer>
+            </div>
+        `
+    });
+
+    var app = new Vue({
+        el: '#app',
+    })
+</script>
+</html>

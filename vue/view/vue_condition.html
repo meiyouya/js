@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——条件渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--v-if用于条件性渲染内容，不满足条件的元素不会被渲染到页面，与其搭配的有v-else-if和v-else-->
+        <h1 v-if="showTitle">标题</h1>
+        <!--如果要对某一组元素进行控制，可以使用template标签，template不会被渲染，不会影响其布局，玩过thymeleaf的，可以对比th:block-->
+        <template v-if="showTemplate">
+            <h3>3级标题</h3>
+            <p>如果要对某一组元素进行控制，可以使用template标签，template不会被渲染，不会影响其布局，玩过thymeleaf的，可以对比th:block</p>
+        </template>
+
+        <!--复用元素管理-->
+        <template v-if="loginType === 'username'">
+            <label>用户名：</label>
+            <input placeholder="请输入用户名">
+        </template>
+        <template v-else>
+            <label>邮箱：</label>
+            <input placeholder="请输入邮箱">
+        </template>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            showTitle: true,
+            showTemplate: true,
+            loginType: 'username'
+        }
+    });
+</script>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——列表渲染</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="n in formatNumbers">
+                {{ n }}
+            </li>
+        </ul>
+
+        <!--v-for接收一个整数会把模板循环对应次数-->
+        <ul>
+            <li v-for="n in 5">哈哈 {{  n }}</li>
+        </ul>
+
+        <!--如果计算属性不适用，可以使用如下方法,一般都是嵌套循环的情况不能使用计算属性-->
+        <ul v-for="n in 3">
+            <li v-for="n in formatNum(numbers)">
+                {{ n }}
+            </li>
+        </ul>
+
+        <!--v-for和v-if同时使用-->
+        <ul>
+            <li v-for="num in numbers" v-if="num % 2 == 0">{{ num }}</li>
+        </ul>
+
+        <!--在自定义组件上v-for的使用方式和其它一样，但是需要一个key来标识它-->
+        <my-component v-for="i in 3" :key="1"></my-component>
+
+        <!--想要把值传进组件，首先需要在组件内部定义prop用于接收，然后通过v-bind传递-->
+        <my-component v-for="num in numbers" :key="2" v-bind:num="num"></my-component>
+
+        <!--如果想把自定义组件用于特殊的元素中，比如在ul标签内部，只有li元素会被看做有效内容,就需要is属性-->
+        <ul >
+            <li is="my-component" v-for="i in 3" :key="3"></li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.component('my-component',{
+        template: '<li>{{ num }}myComponentValue</li>',
+        props: ['num']
+    });
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            numbers: [1,2,3,4,5,6,7],
+        },
+        computed: {
+            formatNumbers: function () {    // 只获取数字中的偶数
+                return this.numbers.filter(function (num) {
+                    return num % 2 == 0;
+                })
+            }
+        },
+        methods: {
+            formatNum: function (numbers) {
+                return numbers.filter(function (num) {
+                    return num % 2 == 0;
+                })
+            }
+        }
+    });
+</script>
+</html>

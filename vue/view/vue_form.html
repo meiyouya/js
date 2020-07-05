@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——表单输入绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--文本-->
+    <input v-model="message">
+    <p>message is：{{ message }}</p>
+    <!--多行文本-->
+    <textarea v-model="multipleMessage"></textarea>
+    <!--white-space: pre-line 是为了让换行符正常显示-->
+    <p style="white-space: pre-line"> multipleMessage is {{ multipleMessage }}</p>
+    <!--复选框-->
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <!--多个复选框-->
+    <input type="checkbox" id="china" value="中国" v-model="checkedCountry">
+    <input type="checkbox" id="american" value="美国" v-model="checkedCountry">
+    <input type="checkbox" id="english" value="英国" v-model="checkedCountry">
+    <p>{{ checkedCountry }}</p>
+    <!--单选按钮-->
+    <input type="radio" id="one" value="one" v-model="picked">
+    <label for="one">one</label>
+    <input type="radio" id="two" value="two" v-model="picked">
+    <label for="two">two</label>
+    <span>{{ picked }}</span>
+    <!--选择框（或叫下拉框）-->
+    <select v-model="selected">
+        <option>选项1</option>
+        <option>选项2</option>
+        <option>选项3</option>
+    </select>
+    <span>{{ selected }}</span>
+    <!--多选选择框-->
+    <select v-model="selected" multiple>
+        <option>选项1</option>
+        <option>选项2</option>
+        <option>选项3</option>
+    </select>
+</div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: '',
+            multipleMessage: '',
+            checked: false,
+            checkedCountry: [],
+            picked: 'one',
+            selected: ''
+        }
+    });
+</script>
+</html>

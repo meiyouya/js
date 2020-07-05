@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——事件处理</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--触发js代码-->
+        <button v-on:click="num += 1">{{ num }}</button>
+        <!--绑定方法名-->
+        <button v-on:click="greet">恭喜</button>
+        <!--调用方法-->
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            num: 0
+        },
+        methods: {
+            greet: function (event) {
+                // event 是原生的DOM事件，视情况而用
+                alert(event.target.tagName);
+            }
+        }
+    });
+</script>
+</html>

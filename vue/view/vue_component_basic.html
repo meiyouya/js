@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue——组件基础</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!--传递单个属性-->
+        <blog title="博客标题1"></blog>
+
+        <!--传递多个属性时，可以看到，template中用div包裹起来了，这是因为Vue的单个根元素原则，如果把div去掉会报错-->
+        <blog v-for="blog in blogs" v-bind:key="blog.id" v-bind:title="blog.title" v-bind:content="blog.content"></blog>
+
+        <!--当要传递的属性越来越多时，最好使用一个对象代替-->
+        <blog v-for="b in blogs" v-bind:key="b.id" v-bind:blog="b"></blog>
+
+        <!--监听子组件事件-->
+        <div :style="{ fontSize: fontSize + 'px' }">
+            <blog v-for="b in blogs" v-bind:key="b.id" v-bind:blog="b" v-on:enlarge-text="fontSize += 1"></blog>
+        </div>
+    </div>
+</body>
+<script>
+    Vue.component('blog',{
+        // props: ['title','content'],
+        props: ['blog'],
+         /*template: `
+            <div>
+                 <h3>{{ title }}</h3>
+                 <p>{{ content }}</p>
+             </div>
+             `*/
+        template: `
+            <div>
+                <h3>{{ blog.title }}</h3>
+                <p>{{ blog.content }}</p>
+                <button  v-on:click="$emit('enlarge-text')">放大字体</button>
+            </div>
+            `
+    });
+    var app =new Vue({
+        el: '#app',
+        data: {
+            blogs: [
+                {id: 1,title: '博客1',content: '博客内容1'},
+                {id: 2,title: '博客2',content: '博客内容2'},
+                {id: 3,title: '博客3',content: '博客内容3'},
+            ],
+            fontSize: 10
+        }
+    })
+</script>
+</html>
